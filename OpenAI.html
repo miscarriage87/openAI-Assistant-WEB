@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+       <title>Futuristische Webseite mit OpenAI-API</title>
+    <style type="text/css">
+      /* Füge hier dein futuristisches Design ein */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #333;
+        color: white;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      input[type="text"] {
+        width: 75%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      button[type="submit"] {
+        width: 25%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .response-box {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        color: black;
+        overflow: auto;
+        max-height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Frage OpenAI</h1>
+      <form id="question-form">
+        <input type="text" placeholder="Deine Frage" id="question-input">
+        <button type="submit">Senden</button>
+      </form>
+      <div class="response-box" id="response-box"></div>
+    </div>
+    <!-- Füge das OpenAI-API-Skript ein -->
+    <script src="https://api.openai.com/v1/completions"></script>
+    <!-- Füge deinen API-Schlüssel ein -->
+    <script>
+      const API_KEY = "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";
+      // API-Key von JavaScript Mastery? >>> sk-42IQSHc32nPPhS65MHPGT3B1bkFJhwiyhY2KZfikW0Nhwulh
+    </script>
+    <!-- Füge deinen Code zur Nutzung der API hier ein -->
+    <script>
+    // Hole das Form-Element
+    const form = document.getElementById("question-form");
+    // Hole das Input-Element
+    const input = document.getElementById("question-input");
+    // Hole das Response-Box-Element
+    const responseBox = document.getElementById("response-box");
+    
+    // Füge einen Event-Listener für das Form-Submit-Event hinzu
+    form.addEventListener("submit", e => {
+      // Verhindere, dass das Formular standardmäßig abgeschickt wird
+      e.preventDefault();
+    
+      // Hole den Wert des Input-Elements
+      const question = input.value;
+    
+     // Führe eine API-Anfrage aus
+        fetch(`https://api.openai.com/v1/completions`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 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"
+          },
+          body: JSON.stringify({
+            model: "text-davinci-003",
+            prompt: question,
+            temperature: 0.5,
+            max_tokens: 25
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Hole die Antwort aus dem API-Response
+            const answer = data.choices[0].text;
+            // Füge die Antwort in die Response-Box ein
+            responseBox.textContent = answer;
+          })
+          .catch(error => {
+            // Füge eine Fehlermeldung in die Response-Box ein, falls ein Fehler auftritt
+            responseBox.textContent = "ERROR.";
+          });
+    });
+</script>
+</body>
+</html>
