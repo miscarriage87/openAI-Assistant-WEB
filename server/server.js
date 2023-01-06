@@ -8,7 +8,7 @@
  console.log(process.env.OPENAI_API_KEY);
 
  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY
  });
 
  const openai = new OpenAIApi(configuration);
@@ -35,7 +35,7 @@
          top_p: 1,
          frequency_penalty: 0.5,
          presence_penalty: 0,
-        });
+        })
 
         res.status(200).send({
          bot: response.data.choices[0].text
