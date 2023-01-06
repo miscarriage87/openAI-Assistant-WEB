@@ -46,4 +46,4 @@
     }
  })
 
- app.listen(5001, () => console.log('Server is running on http://localhost:5001 or https://openai-assistant.onrender.com'));
+ app.listen(5001, () => console.log('Server is running on http://localhost:5001'));
