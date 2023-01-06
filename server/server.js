@@ -5,7 +5,7 @@
 
  dotenv.config();
 
- //console.log(process.env.OPENAI_API_KEY);
+ console.log(process.env.OPENAI_API_KEY);
 
  const configuration = new Configuration({
    apiKey: process.env.OPENAI_API_KEY,
@@ -34,7 +34,7 @@
          max_tokens: 3000,
          top_p: 1,
          frequency_penalty: 0.5,
-         presence_penalty: 0,
+         presence_penalty: 0
         })
 
         res.status(200).send({
