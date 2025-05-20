@@ -79,7 +79,7 @@
     loader(messageDiv);
 
     // fetch data from server -> bot's response
-    const response = await fetch('http://localhost:5001', {
+    const response = await fetch(import.meta.env.VITE_SERVER_URL || 'http://localhost:5001', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
